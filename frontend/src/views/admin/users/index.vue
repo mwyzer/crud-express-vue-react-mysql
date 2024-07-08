@@ -1,58 +1,59 @@
 <script setup>
-
-//import sidebar component
+// Import sidebar component
 import SidebarMenu from '../../../components/SidebarMenu.vue'
 
-//import ref and onMounted
+// Import ref and onMounted
 import { ref, onMounted } from 'vue';
 
-//import js cookie
+// Import js cookie
 import Cookies from 'js-cookie';
 
-//import api
+// Import api
 import api from '../../../services/api';
 
-//get token from cookies
+// Get token from cookies
 const token = Cookies.get('token');
 
-//define state
+// Define state
 const users = ref([]);
+const userIdToDelete = ref(null);
 
-//method fetchDataPosts
+// Method fetchDataUsers
 const fetchDataUsers = async () => {
-
-    //fetch data 
+    // Fetch data
     api.defaults.headers.common['Authorization'] = token;
     await api.get('/api/admin/users')
-
         .then(response => {
-
-            //set response data to state "users"
-            users.value = response.data.data
-
+            // Set response data to state "users"
+            users.value = response.data.data;
         });
-}
+};
 
-//run hook "onMounted"
+// Run hook "onMounted"
 onMounted(() => {
-
-    //call method "fetchDataUsers"
+    // Call method "fetchDataUsers"
     fetchDataUsers();
 });
 
-const deleteUser = async (id) => {
-
-    //delete post with API
-    api.defaults.headers.common['Authorization'] = token;
-    await api.delete(`/api/admin/users/${id}`)
-        .then(() => {
-
-            //call method "fetchDataUsers"
-            fetchDataUsers();
-        })
-
+const confirmDeleteUser = (id) => {
+    userIdToDelete.value = id;
+    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
 };
 
+const deleteUser = async () => {
+    // Delete user with API
+    api.defaults.headers.common['Authorization'] = token;
+    await api.delete(`/api/admin/users/${userIdToDelete.value}`)
+        .then(() => {
+            // Call method "fetchDataUsers"
+            fetchDataUsers();
+        });
+
+    // Hide modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+    modal.hide();
+};
 
 </script>
 
@@ -92,13 +93,32 @@ const deleteUser = async (id) => {
                                     <td class="text-center">
                                         <router-link :to="{ name: 'admin.users.edit', params: { id: user.id } }"
                                             class="btn btn-sm btn-primary rounded-sm shadow border-0 me-2">EDIT</router-link>
-                                        <button @click="deleteUser(user.id)"
+                                        <button @click="confirmDeleteUser(user.id)"
                                             class="btn btn-sm btn-danger rounded-sm shadow border-0">DELETE</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this user?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" @click="deleteUser">Delete</button>
                 </div>
             </div>
         </div>
