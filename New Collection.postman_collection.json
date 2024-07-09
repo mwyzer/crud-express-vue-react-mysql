@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "c675b387-58f3-4729-a713-95abb4ce130b",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "5182876"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:3000/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzIwMjA2MTMyLCJleHAiOjE3MjAyMDk3MzJ9.N9vm4ajNR9984i3jFMnMAEiKNXCQLtfFon944eLCeV8",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/api/admin/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzIwMjA2Mjg2LCJleHAiOjE3MjAyMDk4ODZ9.wZRjHvjnpC3yxXUe1v1LqyjKTvBkv7XyPfypXyHaoYg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "muhammad",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "muhammad@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:3000/api/admin/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzIwMjA2Mjg2LCJleHAiOjE3MjAyMDk4ODZ9.wZRjHvjnpC3yxXUe1v1LqyjKTvBkv7XyPfypXyHaoYg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "muhammad",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "muhammad@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:3000/api/admin/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzIwMjA2Mjg2LCJleHAiOjE3MjAyMDk4ODZ9.wZRjHvjnpC3yxXUe1v1LqyjKTvBkv7XyPfypXyHaoYg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "muhammad",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "muhammad@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:3000/api/admin/users"
+			},
+			"response": []
+		}
+	]
+}
