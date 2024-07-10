@@ -1,31 +1,25 @@
-//import useContext
+// Import necessary packages and components
 import React, { useContext } from "react";
-
-//import context
-import { AuthContext } from "../context/AuthContext";
-
-//import react router dom
 import { Routes, Route, Navigate } from "react-router-dom";
 
-//import view home
+// Import context
+import { AuthContext } from "../context/AuthContext";
+
+// Import views
 import Home from "../views/home/index.jsx";
-
-//import view register
 import Register from "../views/auth/register.jsx";
-
-//import view login
 import Login from "../views/auth/login.jsx";
 
 export default function AppRoutes() {
-  //destructure context "isAuthenticated"
+  // Destructure context to get authentication status
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <Routes>
-      {/* route "/" */}
+      {/* Route for Home page */}
       <Route path="/" element={<Home />} />
 
-      {/* route "/register" */}
+      {/* Route for Register page */}
       <Route
         path="/register"
         element={
@@ -37,7 +31,7 @@ export default function AppRoutes() {
         }
       />
 
-      {/* route "/login" */}
+      {/* Route for Login page */}
       <Route
         path="/login"
         element={
